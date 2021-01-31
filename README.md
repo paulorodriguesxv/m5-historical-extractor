@@ -1,3 +1,7 @@
+# Metatrader5 stock REST Server
+
+It's a super simle sample :-)
+
 To run:
  - uvicorn mt5server.main:app --reload --loop asyncio
 
@@ -6,3 +10,7 @@ Request:
 
 Swagger:
  - http://localhost:8000/docs
+
+
+# Star if you like it.
+If you like or use this project, consider showing your support by starring it.

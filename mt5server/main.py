@@ -19,7 +19,7 @@ app.add_middleware(GZipMiddleware, minimum_size=1000)
 class TimeframeEnum(str, Enum):
     """ Supported timeframes """
     DAILY = 'daily'
-    FIVE_MINUTE = '5_MINUTE'
+    FIVE_MINUTE = '5min'
 
     @staticmethod
     def list():
@@ -54,7 +54,7 @@ def ct2mt5(timeframe):
 
     return mt5.TIMEFRAME_D1
 
-@app.get("/quotes/{stock}/{timeframe}",
+@app.get("/quotes/{stock}",
          responses={
              HTTPStatus.OK.value: {
                  "model": List[StockData]
@@ -64,7 +64,7 @@ def ct2mt5(timeframe):
                  "description": "This endpoint always raises an error",
              }
          })
-async def root(stock, timeframe: TimeframeEnum, x_start_date: Optional[datetime] = Header(None), x_end_date: Optional[datetime] = Header(None)):
+async def root(stock, timeframe: Optional[TimeframeEnum] = Header(None), x_start_date: Optional[datetime] = Header(None), x_end_date: Optional[datetime] = Header(None)):
 
     stock = stock.upper()
 
